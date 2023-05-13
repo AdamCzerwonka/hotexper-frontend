@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import LoginPage from "./Pages/Login";
 import Register from "./Pages/Register";
 import LogoutPage from "./Pages/Logout";
+import RegisterSuccessful from "./Pages/RegisterSuccessful";
 
 const App: Component = () => {
   return (
@@ -13,6 +14,7 @@ const App: Component = () => {
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={Register} />
         <Route path="/logout" component={LogoutPage} />
+        <Route path="/register/success" component={RegisterSuccessful} />
       </Routes>
     </>
   );
