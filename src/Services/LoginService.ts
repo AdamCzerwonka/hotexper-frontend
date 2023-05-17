@@ -29,15 +29,9 @@ const fetchToken = async (data: UserLoginData) => {
   return response.json();
 };
 
-const Login = (loginData: UserLoginData) => {
-  fetchToken(loginData)
-    .then((res) => {
-      if (res.token) {
-        localStorage.setItem(tokenKey, res.token);
-        setLoggedIn(true);
-      }
-    })
-    .catch((err) => console.log(err));
+const Login = (token: string) => {
+  localStorage.setItem(tokenKey, token);
+  setLoggedIn(true);
 };
 
 const Logout = () => {
@@ -55,5 +49,5 @@ const GetToken = () => {
   return token;
 };
 
-export { isLoggedIn, Login, Logout, GetToken };
+export { isLoggedIn, Login, fetchToken, Logout, GetToken };
 export type { UserLoginData };
