@@ -37,7 +37,7 @@ const LoginPage: Component = () => {
     <Show when={!isLoggedIn()} fallback={<Navigate href={"/"} />}>
       <div class="flex flex-col items-center justify-center h-screen place-items-center  mx-auto">
         <form
-          class=" container flex flex-col border-2 border-black p-10 max-w-md"
+          class="container flex flex-col border-2 border-black p-10 max-w-md"
           onSubmit={onSubmit}
         >
           <h1 class="text-5xl text-center pb-10">Login</h1>

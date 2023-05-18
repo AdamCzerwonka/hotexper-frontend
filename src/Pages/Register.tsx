@@ -57,66 +57,86 @@ const Register: Component = () => {
     };
 
     submitRegister(dataToSend).then((res) => {
-      
-      navigate("success", { replace: false });
+      if (res) {
+        console.log(res);
+      } else {
+        navigate("success", { replace: false });
+      }
     });
   };
 
   return (
     <>
-      <form onsubmit={onSubmit}>
-        <div>
-          <label>First name</label>
-          <input
-            value={form.firstName}
-            oninput={updateFormField("firstName")}
-            type="text"
-          />
-        </div>
-        <div>
-          <label>Last name</label>
-          <input
-            value={form.lastName}
-            oninput={updateFormField("lastName")}
-            type="text"
-          />
-        </div>
-        <div>
-          <label>Telephone number</label>
-          <input
-            value={form.phoneNumber}
-            oninput={updateFormField("phoneNumber")}
-            type="text"
-          />
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            value={form.email}
-            oninput={updateFormField("email")}
-            type="email"
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            value={form.password}
-            oninput={updateFormField("password")}
-            type="password"
-            autocomplete="new-password"
-          />
-        </div>
-        <div>
-          <label>Repeat password</label>
-          <input
-            value={form.password2}
-            oninput={updateFormField("password2")}
-            type="password"
-            autocomplete="new-password"
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+      <div class="flex flex-col items-center justify-center h-screen place-items-center  mx-auto">
+        <form
+          onsubmit={onSubmit}
+          class="container flex flex-col border-2 border-black p-10 max-w-md"
+        >
+          <h1 class="text-5xl text-center pb-10">Register</h1>
+          <div class="flex flex-col pb-5">
+            <input
+              class="border-red-500 border-2 p-2"
+              value={form.firstName}
+              oninput={updateFormField("firstName")}
+              type="text"
+            />
+            <label class="text-sm">First name</label>
+          </div>
+          <div class="flex flex-col pb-5">
+            <input
+              class="border-red-500 border-2 p-2"
+              value={form.lastName}
+              oninput={updateFormField("lastName")}
+              type="text"
+            />
+            <label class="text-sm">Last name</label>
+          </div>
+          <div class="flex flex-col pb-5">
+            <input
+              class="border-red-500 border-2 p-2"
+              value={form.phoneNumber}
+              oninput={updateFormField("phoneNumber")}
+              type="text"
+            />
+            <label class="text-sm">Telephone number</label>
+          </div>
+          <div class="flex flex-col pb-5">
+            <input
+              class="border-red-500 border-2 p-2"
+              value={form.email}
+              oninput={updateFormField("email")}
+              type="email"
+            />
+            <label class="text-sm">Email</label>
+          </div>
+          <div class="flex flex-col pb-5">
+            <input
+              class="border-red-500 border-2 p-2"
+              value={form.password}
+              oninput={updateFormField("password")}
+              type="password"
+              autocomplete="new-password"
+            />
+            <label class="text-sm">Password</label>
+          </div>
+          <div class="flex flex-col pb-5">
+            <input
+              class="border-red-500 border-2 p-2"
+              value={form.password2}
+              oninput={updateFormField("password2")}
+              type="password"
+              autocomplete="new-password"
+            />
+            <label class="text-sm">Repeat password</label>
+          </div>
+          <button
+            type="submit"
+            class="border-4 border-red-500 p-2.5 text-lg font-bold"
+          >
+            Register
+          </button>
+        </form>
+      </div>
     </>
   );
 };
