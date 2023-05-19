@@ -1,7 +1,11 @@
 import { A } from "@solidjs/router";
 import { Component, Show } from "solid-js";
 import { isLoggedIn } from "../Services/LoginService";
-import { switchToLightTheme } from "../Services/ThemeService";
+import {
+  switchToAutoTheme,
+  switchToDarkTheme,
+  switchToLightTheme,
+} from "../Services/ThemeService";
 
 const Home: Component = () => {
   return (
@@ -28,8 +32,17 @@ const Home: Component = () => {
           </Show>
         </ul>
       </nav>
-      <button onclick={() => switchToLightTheme()} class="border-2 border-black">
-        Switch theme
+      <button onclick={() => switchToDarkTheme()} class="border-2 border-black">
+        Dark theme
+      </button>
+      <button
+        onclick={() => switchToLightTheme()}
+        class="border-2 border-black"
+      >
+        Light theme
+      </button>
+      <button onclick={() => switchToAutoTheme()} class="border-2 border-black">
+        Use preferences
       </button>
     </>
   );
