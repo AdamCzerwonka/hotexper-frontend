@@ -57,6 +57,8 @@ const Register: Component = () => {
       password2: form.password2,
     };
 
+    console.log(dataToSend);
+
     submitRegister(dataToSend).then((res) => {
       if (res) {
         console.log(res);
@@ -83,7 +85,7 @@ const Register: Component = () => {
           <FormInput
             Value={form.lastName}
             Label="Last name"
-            updateFunc={() => updateFormField("lastname")}
+            updateFunc={() => updateFormField("lastName")}
           />
 
           <FormInput
