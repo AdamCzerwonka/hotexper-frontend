@@ -1,6 +1,7 @@
-import { useNavigate } from "@solidjs/router";
+import { A, useNavigate } from "@solidjs/router";
 import { Component } from "solid-js";
 import { createStore } from "solid-js/store";
+import FormInput from "../Components/FormInput";
 
 interface RegisterFormFields {
   firstName: string;
@@ -70,71 +71,52 @@ const Register: Component = () => {
       <div class="flex flex-col items-center justify-center h-screen place-items-center  mx-auto">
         <form
           onsubmit={onSubmit}
-          class="container flex flex-col border-2 border-black p-10 max-w-md"
+          class="container flex flex-col border-2 border-black dark:border-slate-400 p-10 max-w-md"
         >
           <h1 class="text-5xl text-center pb-10">Register</h1>
-          <div class="flex flex-col pb-5">
-            <input
-              class="border-red-500 border-2 p-2"
-              value={form.firstName}
-              oninput={updateFormField("firstName")}
-              type="text"
-            />
-            <label class="text-sm">First name</label>
-          </div>
-          <div class="flex flex-col pb-5">
-            <input
-              class="border-red-500 border-2 p-2"
-              value={form.lastName}
-              oninput={updateFormField("lastName")}
-              type="text"
-            />
-            <label class="text-sm">Last name</label>
-          </div>
-          <div class="flex flex-col pb-5">
-            <input
-              class="border-red-500 border-2 p-2"
-              value={form.phoneNumber}
-              oninput={updateFormField("phoneNumber")}
-              type="text"
-            />
-            <label class="text-sm">Telephone number</label>
-          </div>
-          <div class="flex flex-col pb-5">
-            <input
-              class="border-red-500 border-2 p-2"
-              value={form.email}
-              oninput={updateFormField("email")}
-              type="email"
-            />
-            <label class="text-sm">Email</label>
-          </div>
-          <div class="flex flex-col pb-5">
-            <input
-              class="border-red-500 border-2 p-2"
-              value={form.password}
-              oninput={updateFormField("password")}
-              type="password"
-              autocomplete="new-password"
-            />
-            <label class="text-sm">Password</label>
-          </div>
-          <div class="flex flex-col pb-5">
-            <input
-              class="border-red-500 border-2 p-2"
-              value={form.password2}
-              oninput={updateFormField("password2")}
-              type="password"
-              autocomplete="new-password"
-            />
-            <label class="text-sm">Repeat password</label>
-          </div>
+          <FormInput
+            Value={form.firstName}
+            Label="First name"
+            updateFunc={() => updateFormField("firstName")}
+          />
+
+          <FormInput
+            Value={form.lastName}
+            Label="Last name"
+            updateFunc={() => updateFormField("lastname")}
+          />
+
+          <FormInput
+            Value={form.phoneNumber}
+            Label="Phone number"
+            updateFunc={() => updateFormField("phoneNumber")}
+          />
+
+          <FormInput
+            Value={form.email}
+            Label="Email address"
+            updateFunc={() => updateFormField("email")}
+          />
+
+          <FormInput
+            Value={form.password}
+            Label="Password"
+            updateFunc={() => updateFormField("password")}
+          />
+          <FormInput
+            Value={form.password2}
+            Label="Repeat passowrd"
+            updateFunc={() => updateFormField("password2")}
+          />
           <button
             type="submit"
             class="border-4 border-red-500 p-2.5 text-lg font-bold"
           >
             Register
           </button>
+          <A class="mt-4 hover:text-slate-400" href="/login">
+            Already have an account?
+          </A>
         </form>
       </div>
     </>
