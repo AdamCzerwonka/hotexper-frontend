@@ -1,6 +1,7 @@
 import { A } from "@solidjs/router";
 import { Component, Show } from "solid-js";
 import { isLoggedIn } from "../Services/LoginService";
+import { switchToLightTheme } from "../Services/ThemeService";
 
 const Home: Component = () => {
   return (
@@ -27,6 +28,9 @@ const Home: Component = () => {
           </Show>
         </ul>
       </nav>
+      <button onclick={() => switchToLightTheme()} class="border-2 border-black">
+        Switch theme
+      </button>
     </>
   );
 };

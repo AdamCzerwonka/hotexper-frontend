@@ -37,32 +37,32 @@ const LoginPage: Component = () => {
     <Show when={!isLoggedIn()} fallback={<Navigate href={"/"} />}>
       <div class="flex flex-col items-center justify-center h-screen place-items-center  mx-auto">
         <form
-          class="container flex flex-col border-2 border-black p-10 max-w-md"
+          class="container flex flex-col border-2 border-black dark:border-slate-400 p-10 max-w-md"
           onSubmit={onSubmit}
         >
           <h1 class="text-5xl text-center pb-10">Login</h1>
           <Show when={errorMsg()}>
-            <p class="border-4 border-red-600 rounded bg-red-400 p-2 mb-4">
+            <p class="border-4 border-red-600 rounded bg-red-400 p-2 mb-4 dark:text-black">
               {errorMsg()}
             </p>
           </Show>
           <div class="flex flex-col pb-5">
             <input
-              class="border-red-500 border-2 p-2"
+              class="border-red-500 border-2 p-2 dark:bg-slate-800"
               value={login()}
               onInput={(e) => setLogin(e.target.value)}
               type="text"
             />
-            <label class="text-sm">Login</label>
+            <label class="text-sm dark:text-slate-400">Login</label>
           </div>
           <div class="flex flex-col pb-5">
             <input
-              class="border-red-500 border-2 p-2"
+              class="border-red-500 border-2 p-2 dark:bg-slate-800"
               value={password()}
               onInput={(e) => setPassword(e.target.value)}
               type="password"
             />
-            <label class="text-sm">Password</label>
+            <label class="text-sm dark:text-slate-400">Password</label>
           </div>
           <button class="border-4 border-red-500 p-2.5 text-lg font-bold">
             Login
