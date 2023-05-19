@@ -1,37 +1,15 @@
-import { A } from "@solidjs/router";
 import { Component, Show } from "solid-js";
-import { isLoggedIn } from "../Services/LoginService";
 import {
   switchToAutoTheme,
   switchToDarkTheme,
   switchToLightTheme,
 } from "../Services/ThemeService";
+import Nav from "../Components/Nav";
 
 const Home: Component = () => {
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <A href="/">Home</A>
-          </li>
-          <Show
-            when={!isLoggedIn()}
-            fallback={
-              <li>
-                <A href="/logout">Logout</A>
-              </li>
-            }
-          >
-            <li>
-              <A href="/login">Login</A>
-            </li>
-            <li>
-              <A href="/register">Register</A>
-            </li>
-          </Show>
-        </ul>
-      </nav>
+      <Nav />
       <button onclick={() => switchToDarkTheme()} class="border-2 border-black">
         Dark theme
       </button>
