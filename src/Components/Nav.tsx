@@ -2,13 +2,16 @@ import { A } from "@solidjs/router";
 import { Component, createSignal, Show } from "solid-js";
 import { isLoggedIn } from "../Services/LoginService";
 import {
-  FaRegularMoon,
   FaSolidArrowDown,
   FaSolidDesktop,
   FaSolidMoon,
   FaSolidSun,
 } from "solid-icons/fa";
-import { switchTheme, switchToAutoTheme, switchToDarkTheme, switchToLightTheme } from "../Services/ThemeService";
+import {
+  switchToAutoTheme,
+  switchToDarkTheme,
+  switchToLightTheme,
+} from "../Services/ThemeService";
 
 const Nav: Component = () => {
   const [name, setName] = createSignal("Adam");
@@ -20,7 +23,7 @@ const Nav: Component = () => {
           <A href="/">Home</A>
         </li>
         <li class="mr-5">
-          <A href="/">Our Hotels</A>
+          <A href="/hotel">Our Hotels</A>
         </li>
         <li class="ml-auto">
           <div class="relative w-24">
@@ -37,15 +40,24 @@ const Nav: Component = () => {
             </button>
             <Show when={isOpen()}>
               <div class="absolute w-full bg-slate-600">
-                <div onClick={switchToDarkTheme} class="flex flex-row justify-between mt-3 items-center px-2 cursor-pointer">
+                <div
+                  onClick={switchToDarkTheme}
+                  class="flex flex-row justify-between mt-3 items-center px-2 cursor-pointer"
+                >
                   Dark
                   <FaSolidMoon />
                 </div>
-                <div onClick={switchToLightTheme} class="flex flex-row justify-between mt-3 items-center px-2 cursor-pointer">
+                <div
+                  onClick={switchToLightTheme}
+                  class="flex flex-row justify-between mt-3 items-center px-2 cursor-pointer"
+                >
                   Light
                   <FaSolidSun />
                 </div>
-                <div onClick={switchToAutoTheme} class="flex flex-row justify-between my-3 items-center px-2 cursor-pointer">
+                <div
+                  onClick={switchToAutoTheme}
+                  class="flex flex-row justify-between my-3 items-center px-2 cursor-pointer"
+                >
                   Auto
                   <FaSolidDesktop />
                 </div>
