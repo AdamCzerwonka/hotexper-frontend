@@ -25,6 +25,9 @@ const Nav: Component = () => {
         <li class="mr-5">
           <A href="/hotel">Our Hotels</A>
         </li>
+        <li class="mr-5">
+          <A href="/users">Users</A>
+        </li>
         <li class="ml-auto">
           <div class="relative w-24">
             <button

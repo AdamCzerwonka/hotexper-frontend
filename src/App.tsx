@@ -10,6 +10,7 @@ import { switchTheme } from "./Services/ThemeService";
 import Hotels from "./Pages/Hotels";
 import UsersPage from "./Pages/Users";
 import UserDetailsPage from "./Pages/UserDetails";
+import UserRolesPage from "./Pages/UserRoles";
 
 const App: Component = () => {
   onMount(() => {
@@ -27,6 +28,7 @@ const App: Component = () => {
           <Route path="/register" component={Register} />
           <Route path="/users" component={UsersPage} />
           <Route path="/users/:id" component={UserDetailsPage}/>
+          <Route path="/users/:id/roles" component={UserRolesPage}/>
           <Route path="/register/success" component={RegisterSuccessful} />
           <Route path="/register/verify" component={VerifyEmail} />
         </Routes>
