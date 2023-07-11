@@ -1,16 +1,31 @@
 import { useParams } from "@solidjs/router";
 import { Component, createSignal, For, onMount } from "solid-js";
 import Nav from "../Components/Nav";
+import { GetApiPath } from "../Services/ApiService";
 
 const UserRolesPage: Component = () => {
+  let orginalRoles: string[] = [];
   const fetchRoles = async () => {
-    return (await fetch("http://localhost:5062/api/role")).json();
+    const url = GetApiPath("/role");
+    return (await fetch(url)).json();
   };
 
   const fetchUserRoles = async (userId: string) => {
-    return (
-      await fetch(`http://localhost:5062/api/account/${userId}/role`)
-    ).json();
+    const url = GetApiPath(`/account/${userId}/role`);
+    return (await fetch(url)).json();
+  };
+
+  const saveUserRoles = () => {
+    const url = GetApiPath(`/account/${params.id}/role`);
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({roles: userRoles()})
+    }).then((response) => {
+      console.log(response);
+    });
   };
 
   const addToRole = () => {
@@ -34,13 +49,11 @@ const UserRolesPage: Component = () => {
       return;
     }
 
-const role = selectedRemove();
+    const role = selectedRemove();
 
     setAllRoles((roles) => [role, ...roles]);
     setSelectedRemove("");
-    setUserRoles((roles) => [
-      ...roles.filter((item) => item !== role),
-    ]);
+    setUserRoles((roles) => [...roles.filter((item) => item !== role)]);
   };
 
   onMount(() => {
@@ -51,6 +64,7 @@ const role = selectedRemove();
 
         roles = roles.filter((item) => !userRoles.includes(item));
 
+        orginalRoles = userRoles.slice();
         setAllRoles(roles);
         setUserRoles(userRoles);
       }
@@ -109,6 +123,7 @@ const role = selectedRemove();
         </div>
         <button onClick={addToRole}>Add</button>
         <button onClick={removeFromRole}>Remove</button>
+        <button onClick={saveUserRoles}>Save</button>
       </div>
     </>
   );
