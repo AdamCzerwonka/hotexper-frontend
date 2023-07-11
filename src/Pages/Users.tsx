@@ -39,7 +39,6 @@ const UsersPage: Component = () => {
                       <td>{user.username}</td>
                       <td>{user.username}</td>
                       <td>{user.email}</td>
-                      <td>{user.email}</td>
                       <td>
                         <a href={"/users/" + user.id}>More info</a>
                       </td>
