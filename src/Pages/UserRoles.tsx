@@ -1,10 +1,16 @@
 import { useParams } from "@solidjs/router";
 import { Component, createSignal, For, onMount } from "solid-js";
 import Nav from "../Components/Nav";
+import RoleList from "../Components/Pages/UserRoles/RoleList";
 import { GetApiPath } from "../Services/ApiService";
 
 const UserRolesPage: Component = () => {
-  let orginalRoles: string[] = [];
+  const params = useParams();
+  const [allRoles, setAllRoles] = createSignal<string[]>([]);
+  const [userRoles, setUserRoles] = createSignal<string[]>([]);
+  const [selectedAdd, setSelectedAdd] = createSignal<string>("");
+  const [selectedRemove, setSelectedRemove] = createSignal<string>("");
+
   const fetchRoles = async () => {
     const url = GetApiPath("/role");
     return (await fetch(url)).json();
@@ -22,7 +28,7 @@ const UserRolesPage: Component = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({roles: userRoles()})
+      body: JSON.stringify({ roles: userRoles() }),
     }).then((response) => {
       console.log(response);
     });
@@ -64,18 +70,12 @@ const UserRolesPage: Component = () => {
 
         roles = roles.filter((item) => !userRoles.includes(item));
 
-        orginalRoles = userRoles.slice();
         setAllRoles(roles);
         setUserRoles(userRoles);
       }
     );
   });
 
-  const params = useParams();
-  const [allRoles, setAllRoles] = createSignal<string[]>([]);
-  const [userRoles, setUserRoles] = createSignal<string[]>([]);
-  const [selectedAdd, setSelectedAdd] = createSignal<string>("");
-  const [selectedRemove, setSelectedRemove] = createSignal<string>("");
   return (
     <>
       <div class="max-w-screen-2xl mx-auto">
