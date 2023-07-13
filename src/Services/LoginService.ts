@@ -49,5 +49,11 @@ const GetToken = () => {
   return token;
 };
 
-export { isLoggedIn, Login, fetchToken, Logout, GetToken };
+const AuthHeader = () => {
+    return {
+        "Authorization": `Bearer ${GetToken()}`
+    };
+}
+
+export { isLoggedIn, Login, fetchToken, Logout, GetToken, AuthHeader };
 export type { UserLoginData };
