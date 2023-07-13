@@ -19,7 +19,7 @@ const App: Component = () => {
 
   return (
     <>
-      <div class="dark:bg-slate-800 dark:text-white w-screen h-screen">
+      <div class="dark:bg-slate-800 dark:text-white w-screen min-h-screen">
         <Routes>
           <Route path="/" component={Home} />
           <Route path="/login" component={LoginPage} />
