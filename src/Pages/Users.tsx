@@ -2,17 +2,24 @@ import { Component, createResource, For } from "solid-js";
 import Nav from "../Components/Nav";
 import SideNav from "../Components/SideNav";
 import { GetApiPath } from "../Services/ApiService";
+import { AuthHeader } from "../Services/LoginService";
 
 const UsersPage: Component = () => {
   interface User {
     id: string;
     username: string;
+    firstname: string;
+    lastname: string;
     email: string;
   }
 
   const fetchUsers = async () => {
     const url = GetApiPath("/account");
-    return (await fetch(url)).json();
+    return (
+      await fetch(url, {
+        headers: AuthHeader(),
+      })
+    ).json();
   };
 
   const [users] = createResource<User[]>(fetchUsers);
@@ -36,8 +43,8 @@ const UsersPage: Component = () => {
                 <For each={users()}>
                   {(user, _) => (
                     <tr>
-                      <td>{user.username}</td>
-                      <td>{user.username}</td>
+                      <td>{user.firstname}</td>
+                      <td>{user.lastname}</td>
                       <td>{user.email}</td>
                       <td>
                         <a href={"/users/" + user.id}>More info</a>
