@@ -1,19 +1,11 @@
-import { useNavigate } from "@solidjs/router";
-import { Component, createResource, For, onMount } from "solid-js";
+import { Component, createResource, For } from "solid-js";
 import Nav from "../Components/Nav";
 import SideNav from "../Components/SideNav";
 import { GetApiPath } from "../Services/ApiService";
-import { AuthHeader, isLoggedIn } from "../Services/LoginService";
+import { AuthHeader } from "../Services/LoginService";
+import User from "../Types/User";
 
 const UsersPage: Component = () => {
-  interface User {
-    id: string;
-    username: string;
-    firstname: string;
-    lastname: string;
-    email: string;
-  }
-
   const fetchUsers = async () => {
     const url = GetApiPath("/account");
     return (
