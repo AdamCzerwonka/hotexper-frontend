@@ -1,14 +1,20 @@
 import { useParams } from "@solidjs/router";
 import { Component, createResource, For, Match, Switch } from "solid-js";
 import Nav from "../Components/Nav";
+import { GetApiPath } from "../Services/ApiService";
 import { AuthHeader } from "../Services/LoginService";
 import User from "../Types/User";
 
+type UserDetailsPageParams = {
+  id: string;
+};
+
 const UserDetailsPage: Component = () => {
-  const params = useParams();
+  const params = useParams<UserDetailsPageParams>();
   const fetchUserData = async (userId: string) => {
+    const url = GetApiPath(`/account/${userId}`);
     return (
-      await fetch(`http://localhost:5062/api/account/${userId}`, {
+      await fetch(url, {
         headers: AuthHeader(),
       })
     ).json();
