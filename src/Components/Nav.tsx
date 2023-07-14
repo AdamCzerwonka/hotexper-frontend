@@ -1,6 +1,6 @@
 import { A } from "@solidjs/router";
 import { Component, createSignal, Show } from "solid-js";
-import { isLoggedIn } from "../Services/LoginService";
+import { GetToken, isLoggedIn } from "../Services/LoginService";
 import {
   FaSolidArrowDown,
   FaSolidDesktop,
@@ -14,8 +14,17 @@ import {
 } from "../Services/ThemeService";
 
 const Nav: Component = () => {
-  const [name, setName] = createSignal("Adam");
+  const [name, setName] = createSignal("");
   const [isOpen, setIsOpen] = createSignal(false);
+
+  if (isLoggedIn()) {
+    let token = GetToken();
+
+    const userDataJSON = atob(token.split(".")[1]);
+    const userData = JSON.parse(userDataJSON);
+    setName(userData["sub"]);
+  }
+
   return (
     <nav>
       <ul class="flex flex-row py-6">
