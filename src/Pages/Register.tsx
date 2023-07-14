@@ -2,6 +2,7 @@ import { A, useNavigate } from "@solidjs/router";
 import { Component } from "solid-js";
 import { createStore } from "solid-js/store";
 import FormInput from "../Components/FormInput";
+import { GetApiPath } from "../Services/ApiService";
 
 interface RegisterFormFields {
   firstName: string;
@@ -31,7 +32,8 @@ const Register: Component = () => {
   };
 
   const submitRegister = async (data: RegisterFormFields) => {
-    const response = await fetch("http://localhost:5062/api/account", {
+    const url = GetApiPath("/account");
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

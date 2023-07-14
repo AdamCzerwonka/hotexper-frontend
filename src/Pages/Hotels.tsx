@@ -1,16 +1,12 @@
 import { A } from "@solidjs/router";
 import { Component, For, createResource } from "solid-js";
 import Nav from "../Components/Nav";
-
-type Hotel = {
-  id: string;
-  name: string;
-  description: string;
-  slug: string;
-};
+import { GetApiPath } from "../Services/ApiService";
+import Hotel from "../Types/Hotel";
 
 const fetchHotels = async () => {
-  return (await fetch("http://localhost:5062/api/hotel")).json();
+  const url = GetApiPath("/hotel");
+  return (await fetch(url)).json();
 };
 
 const Hotels: Component = () => {
