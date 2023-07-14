@@ -1,8 +1,9 @@
-import { Component, createResource, For } from "solid-js";
+import { useNavigate } from "@solidjs/router";
+import { Component, createResource, For, onMount } from "solid-js";
 import Nav from "../Components/Nav";
 import SideNav from "../Components/SideNav";
 import { GetApiPath } from "../Services/ApiService";
-import { AuthHeader } from "../Services/LoginService";
+import { AuthHeader, isLoggedIn } from "../Services/LoginService";
 
 const UsersPage: Component = () => {
   interface User {

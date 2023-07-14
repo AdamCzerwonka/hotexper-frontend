@@ -1,4 +1,5 @@
 import { createSignal } from "solid-js";
+import { GetApiPath } from "./ApiService";
 
 interface UserLoginData {
   Email: string;
@@ -14,11 +15,9 @@ const IsTokenPresent = () => {
 
 const [isLoggedIn, setLoggedIn] = createSignal(IsTokenPresent());
 
-const url = "http://localhost:5062/api/login";
-
 const fetchToken = async (data: UserLoginData) => {
-  let response: Response;
-  response = await fetch(url, {
+  const url = GetApiPath("/login");
+  let response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

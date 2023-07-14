@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "@solidjs/router";
 import { Component, onMount } from "solid-js";
+import { GetApiPath } from "../Services/ApiService";
 
 const VerifyEmail: Component = () => {
   const location = useLocation();
@@ -8,7 +9,7 @@ const VerifyEmail: Component = () => {
     const params = location.search
       .substring(1)
       .split("&")
-      .reduce((prev, curr, i) => {
+      .reduce((prev, curr, _) => {
         const splitIndex = curr.indexOf("=");
         const valueName = curr.substring(0, splitIndex);
         const value = curr.substring(splitIndex + 1);
@@ -16,7 +17,7 @@ const VerifyEmail: Component = () => {
         return prev;
       }, {});
 
-    const url = `http://localhost:5062/api/account/${params["userId"]}/verify`;
+    const url = GetApiPath(`/account/${params["userId"]}/verify`);
 
     const response = await fetch(url, {
       method: "POST",
