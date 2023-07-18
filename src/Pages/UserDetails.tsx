@@ -1,5 +1,7 @@
 import { useParams } from "@solidjs/router";
+import { FaSolidBan, FaSolidPenToSquare, FaSolidTrashCan, FaSolidUsers } from "solid-icons/fa";
 import { Component, createResource, For, Match, Switch } from "solid-js";
+import Button from "../Components/Button";
 import Nav from "../Components/Nav";
 import { GetApiPath } from "../Services/ApiService";
 import { AuthHeader } from "../Services/LoginService";
@@ -29,22 +31,48 @@ const UserDetailsPage: Component = () => {
         <p>
           <Switch
             fallback={
-              <div>
-                <p>Id: {userData().id}</p>
-                <p>Email: {userData().email}</p>
-                <p>Username: {userData().username}</p>
-                <h3>Roles</h3>
-                <ul>
-                  <For each={userData().roles}>
-                    {(role, i) => (
-                      <li>
-                        {i()}: {role}
-                      </li>
-                    )}
-                  </For>
-                </ul>
-                <a href={`/users/${params.id}/roles`}>Manage roles</a>
-              </div>
+              <>
+                <div class="flex flex-row">
+                  <Button
+                    content={"Edit"}
+                    Icon={<FaSolidPenToSquare />}
+                    onClick={() => console.log("test")}
+                  />
+                  <Button
+                    content={"Roles"}
+                    Icon={<FaSolidUsers />}
+                    onClick={() => console.log("test")}
+                  />
+                  <Button
+                    content={"Disable"}
+                    Icon={<FaSolidBan />}
+                    onClick={() => console.log("test")}
+                  />
+                  <Button
+                    content={"Delete"}
+                    Icon={<FaSolidTrashCan />}
+                    onClick={() => console.log("test")}
+                  />
+                </div>
+                <div>
+                  <p>Id: {userData().id}</p>
+                  <p>Firstname: {userData().firstname}</p>
+                  <p>Lastname: {userData().lastname}</p>
+                  <p>Email: {userData().email}</p>
+                  <p>Username: {userData().username}</p>
+                  <h3>Roles</h3>
+                  <ul>
+                    <For each={userData().roles}>
+                      {(role, i) => (
+                        <li>
+                          {i()}: {role}
+                        </li>
+                      )}
+                    </For>
+                  </ul>
+                  <a href={`/users/${params.id}/roles`}>Manage roles</a>
+                </div>
+              </>
             }
           >
             <Match when={userData.loading}>...loading</Match>
