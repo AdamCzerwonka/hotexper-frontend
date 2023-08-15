@@ -1,6 +1,5 @@
 import { A } from "@solidjs/router";
 import { Component, createSignal, Show } from "solid-js";
-import { GetToken, isLoggedIn } from "../Services/LoginService";
 import {
   FaSolidArrowDown,
   FaSolidDesktop,
@@ -15,17 +14,8 @@ import {
 import { useAuth } from "../Store/Auth";
 
 const Nav: Component = () => {
-  const [name, setName] = createSignal("");
   const [isOpen, setIsOpen] = createSignal(false);
-  const [username] = useAuth();
-
-  if (isLoggedIn()) {
-    let token = GetToken();
-
-    const userDataJSON = atob(token.split(".")[1]);
-    const userData = JSON.parse(userDataJSON);
-    setName(userData["sub"]);
-  }
+  const [data] = useAuth();
 
   return (
     <nav>
@@ -80,10 +70,10 @@ const Nav: Component = () => {
           </div>
         </li>
         <Show
-          when={!isLoggedIn()}
+          when={!data.isLoggedIn}
           fallback={
             <>
-              <li class=" mr-5">Hello, {name()}</li>
+              <li class=" mr-5">Hello, {data.username}</li>
               <li>
                 <A href="/logout">Logout</A>
               </li>

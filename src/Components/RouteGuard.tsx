@@ -1,17 +1,19 @@
 import { Outlet, useNavigate } from "@solidjs/router";
 import { Component, createEffect, Show } from "solid-js";
-import { isLoggedIn } from "../Services/LoginService";
+import { useAuth } from "../Store/Auth";
 
 const RouteGuard: Component = () => {
   const navigate = useNavigate();
+  const [data] = useAuth();
+
   createEffect(() => {
-    if (!isLoggedIn()) {
+    if (!data.isLoggedIn) {
       navigate("login", { replace: false });
     }
   });
-
+  
   return (
-    <Show when={isLoggedIn()}>
+    <Show when={data.isLoggedIn}>
       <Outlet />
     </Show>
   );

@@ -1,10 +1,11 @@
 import { Navigate } from "@solidjs/router";
 import { Component, onMount } from "solid-js";
-import { Logout } from "../Services/LoginService";
+import { useAuth } from "../Store/Auth";
 
 const LogoutPage: Component = () => {
+  const [data, { logout }] = useAuth();
   onMount(() => {
-    Logout();
+    logout();
   });
 
   return <Navigate href="/login" />;
