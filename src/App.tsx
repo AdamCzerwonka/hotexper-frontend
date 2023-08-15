@@ -12,6 +12,7 @@ import UsersPage from "./Pages/Users";
 import UserDetailsPage from "./Pages/UserDetails";
 import UserRolesPage from "./Pages/UserRoles";
 import RouteGuard from "./Components/RouteGuard";
+import AuthProvider from "./Store/Auth";
 
 const App: Component = () => {
   onMount(() => {
@@ -20,22 +21,24 @@ const App: Component = () => {
 
   return (
     <>
-      <div class="dark:bg-slate-800 dark:text-white w-screen min-h-screen">
-        <Routes>
-          <Route path="/" component={Home} />
-          <Route path="/" component={RouteGuard}>
-            <Route path="/users" component={UsersPage} />
-            <Route path="/users/:id" component={UserDetailsPage} />
-            <Route path="/users/:id/roles" component={UserRolesPage} />
-          </Route>
-          <Route path="/login" component={LoginPage} />
-          <Route path="/logout" component={LogoutPage} />
-          <Route path="/hotel" component={Hotels} />
-          <Route path="/register" component={Register} />
-          <Route path="/register/success" component={RegisterSuccessful} />
-          <Route path="/register/verify" component={VerifyEmail} />
-        </Routes>
-      </div>
+      <AuthProvider>
+        <div class="dark:bg-slate-800 dark:text-white w-screen min-h-screen">
+          <Routes>
+            <Route path="/" component={Home} />
+            <Route path="/" component={RouteGuard}>
+              <Route path="/users" component={UsersPage} />
+              <Route path="/users/:id" component={UserDetailsPage} />
+              <Route path="/users/:id/roles" component={UserRolesPage} />
+            </Route>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/logout" component={LogoutPage} />
+            <Route path="/hotel" component={Hotels} />
+            <Route path="/register" component={Register} />
+            <Route path="/register/success" component={RegisterSuccessful} />
+            <Route path="/register/verify" component={VerifyEmail} />
+          </Routes>
+        </div>
+      </AuthProvider>
     </>
   );
 };

@@ -12,10 +12,12 @@ import {
   switchToDarkTheme,
   switchToLightTheme,
 } from "../Services/ThemeService";
+import { useAuth } from "../Store/Auth";
 
 const Nav: Component = () => {
   const [name, setName] = createSignal("");
   const [isOpen, setIsOpen] = createSignal(false);
+  const [username] = useAuth();
 
   if (isLoggedIn()) {
     let token = GetToken();
