@@ -1,5 +1,5 @@
 import { Component, createResource, For } from "solid-js";
-import Nav from "../Components/Nav";
+import Navigation from "../Components/Navigation";
 import SideNav from "../Components/SideNav";
 import { GetApiPath } from "../Services/ApiService";
 import User from "../Types/User";
@@ -21,7 +21,7 @@ const UsersPage: Component = () => {
   return (
     <>
       <div class="container mx-auto">
-        <Nav />
+        <Navigation />
         <div class="flex flex-row">
           <SideNav />
           <main role="main" class="w-full sm:w-2/3 md:w-4/5 px-2">

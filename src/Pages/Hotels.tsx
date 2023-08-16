@@ -1,6 +1,6 @@
 import { A } from "@solidjs/router";
 import { Component, For, createResource } from "solid-js";
-import Nav from "../Components/Nav";
+import Navigation from "../Components/Navigation";
 import { GetApiPath } from "../Services/ApiService";
 import Hotel from "../Types/Hotel";
 
@@ -14,7 +14,7 @@ const Hotels: Component = () => {
   return (
     <>
       <div class="max-w-screen-2xl mx-auto">
-        <Nav />
+        <Navigation />
         <For each={hotels()}>
           {(hotel, _) => (
             <div>

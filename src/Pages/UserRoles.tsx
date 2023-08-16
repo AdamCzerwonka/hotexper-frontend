@@ -1,6 +1,6 @@
 import { useParams } from "@solidjs/router";
 import { Component, createSignal, For, onMount } from "solid-js";
-import Nav from "../Components/Nav";
+import Navigation from "../Components/Navigation";
 import RoleList from "../Components/Pages/UserRoles/RoleList";
 import { GetApiPath } from "../Services/ApiService";
 
@@ -79,7 +79,7 @@ const UserRolesPage: Component = () => {
   return (
     <>
       <div class="max-w-screen-2xl mx-auto">
-        <Nav />
+        <Navigation />
         <p>You are modifing roles for: {params.id}</p>
         <div class="flex flex-row">
           <div class="w-80">

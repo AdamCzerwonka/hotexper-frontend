@@ -1,5 +1,5 @@
 import { A } from "@solidjs/router";
-import { Component, createSignal, Show } from "solid-js";
+import { Component, createSignal, For, Show } from "solid-js";
 import {
   FaSolidArrowDown,
   FaSolidDesktop,
@@ -12,23 +12,39 @@ import {
   switchToLightTheme,
 } from "../Services/ThemeService";
 import { useAuth } from "../Store/Auth";
+import { ROUTES } from "../routing";
 
-const Nav: Component = () => {
+const Navigation: Component = () => {
   const [isOpen, setIsOpen] = createSignal(false);
   const [data] = useAuth();
+
+  const pages = [
+    {
+      path: ROUTES.HOME,
+      label: "Home",
+    },
+    {
+      path: ROUTES.HOTELS,
+      label: "Hotels",
+    },
+    {
+      path: ROUTES.USERS,
+      label: "Users",
+    },
+  ] satisfies { path: string; label: string }[];
 
   return (
     <nav>
       <ul class="flex flex-row py-6">
-        <li class="mr-5">
-          <A href="/">Home</A>
-        </li>
-        <li class="mr-5">
-          <A href="/hotel">Our Hotels</A>
-        </li>
-        <li class="mr-5">
-          <A href="/users">Users</A>
-        </li>
+        <div class="flex flex-row gap-x-4">
+          <For each={pages}>
+            {(item) => (
+              <li>
+                <A href={item.path}>{item.label}</A>
+              </li>
+            )}
+          </For>
+        </div>
         <li class="ml-auto">
           <div class="relative w-24">
             <button
@@ -92,4 +108,4 @@ const Nav: Component = () => {
   );
 };
 
-export default Nav;
+export default Navigation;

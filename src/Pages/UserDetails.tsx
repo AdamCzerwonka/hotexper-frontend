@@ -14,7 +14,7 @@ import {
   Switch,
 } from "solid-js";
 import Button from "../Components/Button";
-import Nav from "../Components/Nav";
+import Navigation from "../Components/Navigation";
 import { GetApiPath } from "../Services/ApiService";
 import User from "../Types/User";
 import { useAuth } from "../Store/Auth";
@@ -42,7 +42,7 @@ const UserDetailsPage: Component = () => {
   return (
     <>
       <div class="max-w-screen-2xl mx-auto">
-        <Nav />
+        <Navigation />
         <p>
           <Switch
             fallback={

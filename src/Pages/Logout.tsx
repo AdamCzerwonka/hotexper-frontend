@@ -3,7 +3,7 @@ import { Component, onMount } from "solid-js";
 import { useAuth } from "../Store/Auth";
 
 const LogoutPage: Component = () => {
-  const [data, { logout }] = useAuth();
+  const [, { logout }] = useAuth();
   onMount(() => {
     logout();
   });
