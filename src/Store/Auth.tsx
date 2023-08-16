@@ -27,6 +27,7 @@ export interface JwtPaload {
   aud: string;
 }
 
+
 const parseToken = (token: string | null): JwtPaload | undefined => {
   if (token) {
     return JSON.parse(atob(token.split(".")[1]));
@@ -58,6 +59,11 @@ const useAuthContextValue = () => {
         setAuthStore("username", undefined);
         setAuthStore("token", undefined);
       },
+      header: () => {
+        return {
+          Authorization: `Bearer ${data.token}`,
+        };
+      }
     },
   ] as const;
 };

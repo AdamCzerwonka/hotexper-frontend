@@ -2,15 +2,17 @@ import { Component, createResource, For } from "solid-js";
 import Nav from "../Components/Nav";
 import SideNav from "../Components/SideNav";
 import { GetApiPath } from "../Services/ApiService";
-import { AuthHeader } from "../Services/LoginService";
 import User from "../Types/User";
+import { useAuth } from "../Store/Auth";
+import { A } from "@solidjs/router";
 
 const UsersPage: Component = () => {
+  const [_, { header }] = useAuth();
   const fetchUsers = async () => {
     const url = GetApiPath("/account");
     return (
       await fetch(url, {
-        headers: AuthHeader(),
+        headers: header(),
       })
     ).json();
   };
@@ -40,7 +42,7 @@ const UsersPage: Component = () => {
                       <td>{user.lastname}</td>
                       <td>{user.email}</td>
                       <td>
-                        <a href={"/users/" + user.id}>More info</a>
+                        <A href={"/users/" + user.id}>More info</A>
                       </td>
                     </tr>
                   )}

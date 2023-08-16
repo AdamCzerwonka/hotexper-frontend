@@ -1,12 +1,9 @@
-import { createSignal } from "solid-js";
 import { GetApiPath } from "./ApiService";
 
 interface UserLoginData {
   email: string;
   password: string;
 }
-
-const tokenKey = "jwt-token";
 
 const fetchToken = async (data: UserLoginData) => {
   const url = GetApiPath("/login");
@@ -21,11 +18,7 @@ const fetchToken = async (data: UserLoginData) => {
   return response.json();
 };
 
-const AuthHeader = () => {
-  return {
-    Authorization: `Bearer ${GetToken()}`,
-  };
-};
+``
 
-export { isLoggedIn, Login, fetchToken, Logout, GetToken, AuthHeader };
+export { fetchToken };
 export type { UserLoginData };

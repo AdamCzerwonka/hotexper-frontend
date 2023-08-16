@@ -16,20 +16,21 @@ import {
 import Button from "../Components/Button";
 import Nav from "../Components/Nav";
 import { GetApiPath } from "../Services/ApiService";
-import { AuthHeader } from "../Services/LoginService";
 import User from "../Types/User";
+import { useAuth } from "../Store/Auth";
 
 type UserDetailsPageParams = {
   id: string;
 };
 
 const UserDetailsPage: Component = () => {
+  const [, { header }] = useAuth();
   const params = useParams<UserDetailsPageParams>();
   const fetchUserData = async (userId: string) => {
     const url = GetApiPath(`/account/${userId}`);
     return (
       await fetch(url, {
-        headers: AuthHeader(),
+        headers: header(),
       })
     ).json();
   };
@@ -74,14 +75,14 @@ const UserDetailsPage: Component = () => {
                 </div>
                 {!isEditMode() && (
                   <div>
-                    <p>Id: {userData().id}</p>
-                    <p>Firstname: {userData().firstname}</p>
-                    <p>Lastname: {userData().lastname}</p>
-                    <p>Email: {userData().email}</p>
-                    <p>Username: {userData().username}</p>
+                    <p>Id: {userData()?.id}</p>
+                    <p>Firstname: {userData()?.firstname}</p>
+                    <p>Lastname: {userData()?.lastname}</p>
+                    <p>Email: {userData()?.email}</p>
+                    <p>Username: {userData()?.username}</p>
                     <h3>Roles</h3>
                     <ul>
-                      <For each={userData().roles}>
+                      <For each={userData()?.roles}>
                         {(role, i) => (
                           <li>
                             {i()}: {role}
